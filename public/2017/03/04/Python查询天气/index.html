@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>Python查询天气 | Linro</title>
+  <meta name="description" content="from Linyxus." />
+  <meta name="keywords" content="Blog,C++,Python,NOIP,Web" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/blog/images/favicon.ico">
+  <link rel="alternate" href="/blog/atom.xml" title="Linro">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用Python制作天气查询程序前言原教程地址：Crossin
+这篇文章是我按照上面的教程学习后写的一篇笔记，由于我是Python初学者，如有不对的地方欢迎指出哦0v0
+截图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python查询天气">
+<meta property="og:url" content="http://linyxus.xyz/blog/2017/03/04/Python查询天气/index.html">
+<meta property="og:site_name" content="Linro">
+<meta property="og:description" content="使用Python制作天气查询程序前言原教程地址：Crossin
+这篇文章是我按照上面的教程学习后写的一篇笔记，由于我是Python初学者，如有不对的地方欢迎指出哦0v0
+截图">
+<meta property="og:image" content="http://linfile.xyz/data/vip_data/f_3356.png">
+<meta property="og:updated_time" content="2017-03-04T12:53:03.847Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python查询天气">
+<meta name="twitter:description" content="使用Python制作天气查询程序前言原教程地址：Crossin
+这篇文章是我按照上面的教程学习后写的一篇笔记，由于我是Python初学者，如有不对的地方欢迎指出哦0v0
+截图">
+<meta name="twitter:image" content="http://linfile.xyz/data/vip_data/f_3356.png">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/blog/style.css">
+  
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+</head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+		<div class="wrapper container">
+			<a class="logo flat-box" href='/blog/' >
+				Linro
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/blog/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/blog/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu"></span></a></li>
+			</ul>
+		</div>
+		<aside class="menu-phone">
+			<nav>
+				
+					<a href="/blog/archives" class="nav-archives nav">
+						Archives
+					</a>
+				
+					<a href="/blog/about" class="nav-about nav">
+						About
+					</a>
+				
+			</nav>
+		</aside>
+</header>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container'>
+      <div class='l_main'>
+        <article id="post-Python查询天气"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/blog/2017/03/04/Python查询天气/">
+    	Python查询天气
+    </a>
+  </h2>
+	<time>
+	  3月 4, 2017
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/blog/categories/Python/">Python</a>
+    </div>
+
+	</section>
+	
+		<section class="tog"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用Python制作天气查询程序"><span class="toc-number">1.</span> <span class="toc-text">使用Python制作天气查询程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#截图"><span class="toc-number">1.2.</span> <span class="toc-text">截图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理"><span class="toc-number">1.3.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">1.4.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">1.4.1.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#改进"><span class="toc-number">1.4.2.</span> <span class="toc-text">改进</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	<h1 id="使用Python制作天气查询程序"><a href="#使用Python制作天气查询程序" class="headerlink" title="使用Python制作天气查询程序"></a>使用Python制作天气查询程序</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>原教程地址：<a href="http://crossincode.com/course/lesson_list/" target="_blank" rel="external">Crossin</a></p>
+<p>这篇文章是我按照上面的教程学习后写的一篇笔记，由于我是<code>Python</code>初学者，如有不对的地方欢迎指出哦0v0</p>
+<h2 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h2><p><img src="http://linfile.xyz/data/vip_data/f_3356.png" alt="f_3356.png"></p>
+<a id="more"></a>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>利用了中国天气网的API。</p>
+<ul>
+<li><p>首先，在<a href="http://m.weather.com.cn/data5/city.xml" target="_blank" rel="external">http://m.weather.com.cn/data5/city.xml</a> 获取各个省的编号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">01|北京,02|上海,03|天津,04|重庆,05|黑龙江,06|吉林,07|辽宁,08|内蒙古,09|河北,10|山西,11|陕西,12|山东,13|新疆,14|西藏,15|青海,16|甘肃,17|宁夏,18|河南,19|江苏,20|湖北,21|浙江,22|安徽,23|福建,24|江西,25|湖南,26|贵州,27|四川,28|广东,29|云南,30|广西,31|海南,32|香港,33|澳门,34|台湾</div></pre></td></tr></table></figure>
+<p>这是获取到的代码</p>
+</li>
+<li>解析这段代码获取各个省的编号在<a href="http://m.weather.com.cn/data5/city省编号.xml" target="_blank" rel="external">http://m.weather.com.cn/data5/city省编号.xml</a> 获取该省城市代码。</li>
+<li>在<a href="http://m.weather.com.cn/data5/city城市编号.xml" target="_blank" rel="external">http://m.weather.com.cn/data5/city城市编号.xml</a> 获取该城市各个地区的编号</li>
+<li><p>最后，在<a href="http://www.weather.com.cn/data/cityinfo/地区编号.html" target="_blank" rel="external">http://www.weather.com.cn/data/cityinfo/地区编号.html</a> 获取这个地区的天气信息，json格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;weatherinfo&quot;:&#123;&quot;city&quot;:&quot;江阴&quot;,&quot;cityid&quot;:&quot;101190202&quot;,&quot;temp1&quot;:&quot;3&quot;,&quot;temp2&quot;:&quot;162&quot;,&quot;weather&quot;:&quot;多云&quot;,&quot;img1&quot;:&quot;n0.gif&quot;,&quot;img2&quot;:&quot;d1.gif&quot;,&quot;ptime&quot;:&quot;18:00&quot;&#125;&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>解析这段json，输出</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>基本上没有什么难度。下面是代码：</p>
+</li>
+</ul>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"><span class="keyword">import</span> json</div><div class="line">prov = &#123;&#125;</div><div class="line">city = &#123;&#125;</div><div class="line"><span class="comment">#Read city data</span></div><div class="line">web = urllib2.urlopen(<span class="string">"http://m.weather.com.cn/data5/city.xml"</span>)</div><div class="line">data = web.read()</div><div class="line">web.close()</div><div class="line">l = data.split(<span class="string">","</span>)</div><div class="line"><span class="keyword">for</span> s <span class="keyword">in</span> l:</div><div class="line">    item = s.split(<span class="string">"|"</span>)</div><div class="line">    prov[item[<span class="number">1</span>]] = item[<span class="number">0</span>]</div><div class="line"><span class="keyword">for</span> p <span class="keyword">in</span> prov:</div><div class="line">    i = prov[p]</div><div class="line">    web = urllib2.urlopen(<span class="string">"http://m.weather.com.cn/data5/city%s.xml"</span> % i)</div><div class="line">    data = web.read()</div><div class="line">    <span class="keyword">print</span> data</div><div class="line">    web.close()</div><div class="line">    l = data.split(<span class="string">","</span>)</div><div class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> l:</div><div class="line">        item = s.split(<span class="string">"|"</span>)</div><div class="line">        city[item[<span class="number">1</span>]] = item[<span class="number">0</span>]</div><div class="line"><span class="keyword">for</span> c <span class="keyword">in</span> city:</div><div class="line">    <span class="keyword">print</span> <span class="string">"%s:%s"</span> % (c, city[c])</div><div class="line"></div><div class="line"><span class="comment">#query</span></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"Enter city name:"</span></div><div class="line">    c = raw_input()</div><div class="line">    i = city.get(c)</div><div class="line">    <span class="keyword">if</span> i == <span class="keyword">None</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">"City not found!"</span></div><div class="line">        <span class="keyword">continue</span></div><div class="line">    area = &#123; &#125;</div><div class="line">    web = urllib2.urlopen(<span class="string">"http://m.weather.com.cn/data5/city%s.xml"</span> % i)</div><div class="line">    data = web.read()</div><div class="line">    web.close()</div><div class="line">    <span class="keyword">print</span> data</div><div class="line">    l = data.split(<span class="string">","</span>)</div><div class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> l:</div><div class="line">        item = s.split(<span class="string">"|"</span>)</div><div class="line">        area[item[<span class="number">1</span>]] = item[<span class="number">0</span>]</div><div class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> area:</div><div class="line">        <span class="keyword">print</span> <span class="string">"%s:%s"</span> % (a, area[a])</div><div class="line">    <span class="keyword">print</span> <span class="string">"Enter area name:"</span></div><div class="line">    a = raw_input()</div><div class="line">    i = area.get(a)</div><div class="line">    <span class="keyword">if</span> i == <span class="keyword">None</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">"Area not found!"</span></div><div class="line">        <span class="keyword">continue</span></div><div class="line">    web = urllib2.urlopen(<span class="string">"http://m.weather.com.cn/data5/city%s.xml"</span> % i)</div><div class="line">    data = web.read()</div><div class="line">    web.close()</div><div class="line">    item = data.split(<span class="string">"|"</span>)</div><div class="line">    i = item[<span class="number">1</span>]</div><div class="line">    web = urllib2.urlopen(<span class="string">"http://www.weather.com.cn/data/cityinfo/%s.html"</span> % i)</div><div class="line">    data = web.read()</div><div class="line">    root = json.loads(data)</div><div class="line">    info = root[<span class="string">"weatherinfo"</span>];</div><div class="line">    temp = <span class="string">"%s\n%s~%s"</span> % (info[<span class="string">"weather"</span>], info[<span class="string">"temp1"</span>], info[<span class="string">"temp2"</span>])</div><div class="line">    <span class="keyword">print</span> temp</div></pre></td></tr></table></figure>
+<h3 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h3><p>代码还有可以改进的地方</p>
+<ul>
+<li>比如抓取编号之后可以存储在文件中。每次打开检测是否有文件，若存在文件就直接读取文件，若不存在就抓取数据。</li>
+<li>这一段代码中有很多重复的地方，可以考虑封装成一个函数，进行代码复用。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Python真的非常强大。</p>
+
+  	</div>
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/blog/tags/urllib2/">urllib2</a>
+      
+        <a href="/blog/tags/python/">python</a>
+      
+	  </div>
+    
+	</section>
+	
+		<section id="comments">
+			<div id="disqus_thread"></div>
+		</section>
+	
+</article>
+
+      </div>
+      <aside class='l_side'>
+        
+  <section class='m_widget about'>
+
+<img class='avatar waves-image' src='/blog/images/ad.png' />
+
+<div class='header'>Linyxus</div>
+<div class='content'>
+<div></div>
+</div>
+</section>
+
+  <section class='m_widget friendly-links'>
+<div class='header'>Links</div>
+<div class='content'>
+    <ul class="entry">
+    
+        <li><a class="flat-box" target="_blank" href="https://riteme.github.io">
+            <div class='name'>riteme</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://glacier-lab.com">
+            <div class='name'>Glacier Lab</div>
+        </a></li>
+    
+    </ul>
+</div>
+</section>
+
+  <section class='m_widget categories'>
+<div class='header'>Categories</div>
+<div class='content'>
+    
+    <ul class="entry">
+    
+        <li><a class="flat-box" href="/blog/categories/0/"><div class='name'>0</div><div class='badget'>2</div></a></li>
+    
+        <li><a class="flat-box" href="/blog/categories/Noip/"><div class='name'>Noip</div><div class='badget'>6</div></a></li>
+    
+        <li><a class="flat-box" href="/blog/categories/Python/"><div class='name'>Python</div><div class='badget'>1</div></a></li>
+    
+    </ul>
+    
+</div>
+</section>
+
+  
+<div class="m_widget tagcloud">
+    <div class="header">Tags</div>
+    <div class='content'>
+        <a href="/blog/tags/C/" style="font-size: 20px; color: #000">C++</a> <a href="/blog/tags/hello/" style="font-size: 16px; color: #555">hello</a> <a href="/blog/tags/other/" style="font-size: 14px; color: #808080">other</a> <a href="/blog/tags/python/" style="font-size: 14px; color: #808080">python</a> <a href="/blog/tags/test/" style="font-size: 14px; color: #808080">test</a> <a href="/blog/tags/urllib2/" style="font-size: 14px; color: #808080">urllib2</a> <a href="/blog/tags/图论/" style="font-size: 18px; color: #2b2b2b">图论</a>
+    </div>
+</div>
+
+
+
+      </aside>
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/linyxus" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/linyxus" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+
+  <div>Linro powered by <a href='https://hexo.io' class="codename">Hexo</a> | <a href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow</a></div>
+  <div><a href="http://www.miitbeian.gov.cn/">苏ICP备17006152号</a></div>
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</footer>
+
+  <script>setLoadingBarProgress(80);</script>
+  
+<script>
+  var disqus_shortname = 'linyxus';
+  
+  var disqus_url = 'http://linyxus.xyz/blog/blog/2017/03/04/Python查询天气/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<script src="/blog/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/blog/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+<script src="/blog/js/search.js"></script>
+<script src="/blog/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

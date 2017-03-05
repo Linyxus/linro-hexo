@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>快速读取整数 | Linro</title>
+  <meta name="description" content="from Linyxus." />
+  <meta name="keywords" content="Blog,C++,Python,NOIP,Web" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/blog/images/favicon.ico">
+  <link rel="alternate" href="/blog/atom.xml" title="Linro">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原因可能大家都知道，在读数据的时候，scanf较之cin快上很多。但当某些题目数据量达到百万级别，就算使用scanf也太慢了。一共一秒钟的时间，读取数据都要用去大半。
+解决方法当读取整数时，我们可以手动的读取字符，组成数字。这样速度将有巨大的提升。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速读取整数">
+<meta property="og:url" content="http://linyxus.xyz/blog/2017/03/04/快速读取整数/index.html">
+<meta property="og:site_name" content="Linro">
+<meta property="og:description" content="原因可能大家都知道，在读数据的时候，scanf较之cin快上很多。但当某些题目数据量达到百万级别，就算使用scanf也太慢了。一共一秒钟的时间，读取数据都要用去大半。
+解决方法当读取整数时，我们可以手动的读取字符，组成数字。这样速度将有巨大的提升。">
+<meta property="og:image" content="http://linfile.xyz/data/vip_data/f_3146.png">
+<meta property="og:updated_time" content="2017-03-04T12:46:13.109Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="快速读取整数">
+<meta name="twitter:description" content="原因可能大家都知道，在读数据的时候，scanf较之cin快上很多。但当某些题目数据量达到百万级别，就算使用scanf也太慢了。一共一秒钟的时间，读取数据都要用去大半。
+解决方法当读取整数时，我们可以手动的读取字符，组成数字。这样速度将有巨大的提升。">
+<meta name="twitter:image" content="http://linfile.xyz/data/vip_data/f_3146.png">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/blog/style.css">
+  
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+</head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+		<div class="wrapper container">
+			<a class="logo flat-box" href='/blog/' >
+				Linro
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/blog/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/blog/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu"></span></a></li>
+			</ul>
+		</div>
+		<aside class="menu-phone">
+			<nav>
+				
+					<a href="/blog/archives" class="nav-archives nav">
+						Archives
+					</a>
+				
+					<a href="/blog/about" class="nav-about nav">
+						About
+					</a>
+				
+			</nav>
+		</aside>
+</header>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container'>
+      <div class='l_main'>
+        <article id="post-快速读取整数"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/blog/2017/03/04/快速读取整数/">
+    	快速读取整数
+    </a>
+  </h2>
+	<time>
+	  3月 4, 2017
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/blog/categories/Noip/">Noip</a>
+    </div>
+
+	</section>
+	
+		<section class="tog"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原因"><span class="toc-number">1.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-number">2.</span> <span class="toc-text">解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理"><span class="toc-number">3.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">4.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">4.1.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不足之处"><span class="toc-number">4.2.</span> <span class="toc-text">不足之处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试"><span class="toc-number">4.3.</span> <span class="toc-text">测试</span></a></li></ol></li></ol></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>可能大家都知道，在读数据的时候，<code>scanf</code>较之<code>cin</code>快上很多。但当某些题目数据量达到<strong>百万</strong>级别，就算使用scanf也太慢了。一共一秒钟的时间，读取数据都要用去大半。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>当读取整数时，我们可以手动的读取字符，组成数字。这样速度将有巨大的提升。<br><a id="more"></a></p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><code>&lt;cstdio&gt;</code>库中有一个<code>readchar()</code>函数，读入一个字符，速度非常快。</p>
+<p>我们将利用这一点快速的手动读入整数。</p>
+<p>由于原理很简单，不多做阐述。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">unsigned_qread</span><span class="params">(<span class="keyword">int</span>&amp; d)</span></span></div><div class="line">&#123;</div><div class="line">    d = <span class="number">0</span>;</div><div class="line">    <span class="keyword">char</span> ch = getchar();</div><div class="line">    <span class="keyword">while</span> (ch &lt; <span class="string">'0'</span> || ch &gt; <span class="string">'9'</span>)</div><div class="line">        ch = getchar();</div><div class="line">    <span class="keyword">while</span> (ch &gt;= <span class="string">'0'</span> &amp;&amp; ch &lt;= <span class="string">'9'</span>)</div><div class="line">        d = d * <span class="number">10</span> + ch - <span class="string">'0'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="不足之处"><a href="#不足之处" class="headerlink" title="不足之处"></a>不足之处</h3><p>只可以读取<strong>正整数</strong>，不过已经可以满足大部分使用的需要了。</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>我写了一段代码测试比较<code>scanf</code>，<code>cin</code>，<code>qread</code>的速度。</p>
+<p><img src="http://linfile.xyz/data/vip_data/f_3146.png" alt="f_3146.png"></p>
+<p>可以看到，手动读取整数比其他两种快得多。通过这个方法，可以有效的避免数据量大的题目由于读取数据而造成的TLE。<br><code>``&gt;)
+}&lt;/cstdio&gt;</code></p>
+
+  	</div>
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/blog/tags/C/">C++</a>
+      
+        <a href="/blog/tags/other/">other</a>
+      
+	  </div>
+    
+	</section>
+	
+		<section id="comments">
+			<div id="disqus_thread"></div>
+		</section>
+	
+</article>
+
+      </div>
+      <aside class='l_side'>
+        
+  <section class='m_widget about'>
+
+<img class='avatar waves-image' src='/blog/images/ad.png' />
+
+<div class='header'>Linyxus</div>
+<div class='content'>
+<div></div>
+</div>
+</section>
+
+  <section class='m_widget friendly-links'>
+<div class='header'>Links</div>
+<div class='content'>
+    <ul class="entry">
+    
+        <li><a class="flat-box" target="_blank" href="https://riteme.github.io">
+            <div class='name'>riteme</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://glacier-lab.com">
+            <div class='name'>Glacier Lab</div>
+        </a></li>
+    
+    </ul>
+</div>
+</section>
+
+  <section class='m_widget categories'>
+<div class='header'>Categories</div>
+<div class='content'>
+    
+    <ul class="entry">
+    
+        <li><a class="flat-box" href="/blog/categories/0/"><div class='name'>0</div><div class='badget'>2</div></a></li>
+    
+        <li><a class="flat-box" href="/blog/categories/Noip/"><div class='name'>Noip</div><div class='badget'>6</div></a></li>
+    
+        <li><a class="flat-box" href="/blog/categories/Python/"><div class='name'>Python</div><div class='badget'>1</div></a></li>
+    
+    </ul>
+    
+</div>
+</section>
+
+  
+<div class="m_widget tagcloud">
+    <div class="header">Tags</div>
+    <div class='content'>
+        <a href="/blog/tags/C/" style="font-size: 20px; color: #000">C++</a> <a href="/blog/tags/hello/" style="font-size: 16px; color: #555">hello</a> <a href="/blog/tags/other/" style="font-size: 14px; color: #808080">other</a> <a href="/blog/tags/python/" style="font-size: 14px; color: #808080">python</a> <a href="/blog/tags/test/" style="font-size: 14px; color: #808080">test</a> <a href="/blog/tags/urllib2/" style="font-size: 14px; color: #808080">urllib2</a> <a href="/blog/tags/图论/" style="font-size: 18px; color: #2b2b2b">图论</a>
+    </div>
+</div>
+
+
+
+      </aside>
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/linyxus" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/linyxus" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+
+  <div>Linro powered by <a href='https://hexo.io' class="codename">Hexo</a> | <a href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow</a></div>
+  <div><a href="http://www.miitbeian.gov.cn/">苏ICP备17006152号</a></div>
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</footer>
+
+  <script>setLoadingBarProgress(80);</script>
+  
+<script>
+  var disqus_shortname = 'linyxus';
+  
+  var disqus_url = 'http://linyxus.xyz/blog/blog/2017/03/04/快速读取整数/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<script src="/blog/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/blog/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+<script src="/blog/js/search.js"></script>
+<script src="/blog/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

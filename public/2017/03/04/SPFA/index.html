@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>SPFA | Linro</title>
+  <meta name="description" content="from Linyxus." />
+  <meta name="keywords" content="Blog,C++,Python,NOIP,Web" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/blog/images/favicon.ico">
+  <link rel="alternate" href="/blog/atom.xml" title="Linro">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="介绍SPFA是基于Bellman-ford的队列优化。一般来说，SPFA的速度快于dijstra和Bellman-ford，是图论中常用的一种算法。
+原理算法从源点出发，向外拓展，若一个顶点的最小距离值被更新了，就将他放入队列中等待处理，因为这个顶点最小距离的减少可能会造成其他顶点的最短距离也减小。
+时间复杂度为\(O(k|E|)\) 。其中，\(k\)为每条边被处理的平均次数，而\(E\)是边集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SPFA">
+<meta property="og:url" content="http://linyxus.xyz/blog/2017/03/04/SPFA/index.html">
+<meta property="og:site_name" content="Linro">
+<meta property="og:description" content="介绍SPFA是基于Bellman-ford的队列优化。一般来说，SPFA的速度快于dijstra和Bellman-ford，是图论中常用的一种算法。
+原理算法从源点出发，向外拓展，若一个顶点的最小距离值被更新了，就将他放入队列中等待处理，因为这个顶点最小距离的减少可能会造成其他顶点的最短距离也减小。
+时间复杂度为\(O(k|E|)\) 。其中，\(k\)为每条边被处理的平均次数，而\(E\)是边集">
+<meta property="og:image" content="http://linfile.xyz/data/vip_data/f_6386.svg">
+<meta property="og:updated_time" content="2017-03-04T12:44:50.822Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SPFA">
+<meta name="twitter:description" content="介绍SPFA是基于Bellman-ford的队列优化。一般来说，SPFA的速度快于dijstra和Bellman-ford，是图论中常用的一种算法。
+原理算法从源点出发，向外拓展，若一个顶点的最小距离值被更新了，就将他放入队列中等待处理，因为这个顶点最小距离的减少可能会造成其他顶点的最短距离也减小。
+时间复杂度为\(O(k|E|)\) 。其中，\(k\)为每条边被处理的平均次数，而\(E\)是边集">
+<meta name="twitter:image" content="http://linfile.xyz/data/vip_data/f_6386.svg">
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/blog/style.css">
+  
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+</head>
+
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+		<div class="wrapper container">
+			<a class="logo flat-box" href='/blog/' >
+				Linro
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/blog/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/blog/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu"></span></a></li>
+			</ul>
+		</div>
+		<aside class="menu-phone">
+			<nav>
+				
+					<a href="/blog/archives" class="nav-archives nav">
+						Archives
+					</a>
+				
+					<a href="/blog/about" class="nav-about nav">
+						About
+					</a>
+				
+			</nav>
+		</aside>
+</header>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container'>
+      <div class='l_main'>
+        <article id="post-SPFA"
+  class="post white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<section class='meta'>
+	<h2 class="title">
+  	<a href="/blog/2017/03/04/SPFA/">
+    	SPFA
+    </a>
+  </h2>
+	<time>
+	  3月 4, 2017
+	</time>
+	
+    
+    <div class='cats'>
+        <a href="/blog/categories/Noip/">Noip</a>
+    </div>
+
+	</section>
+	
+		<section class="tog"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理"><span class="toc-number">2.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">3.</span> <span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#讨论"><span class="toc-number">4.</span> <span class="toc-text">讨论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">5.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#探究"><span class="toc-number">6.</span> <span class="toc-text">探究</span></a></li></ol></section>
+	
+	<section class="article typo">
+  	<div class="article-entry" itemprop="articleBody">
+    	<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><code>SPFA</code>是基于<code>Bellman-ford</code>的<strong>队列优化</strong>。一般来说，SPFA的速度快于<code>dijstra</code>和<code>Bellman-ford</code>，是图论中常用的一种算法。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>算法从源点出发，向外拓展，若一个顶点的最小距离值被更新了，就将他放入队列中等待处理，因为这个顶点最小距离的减少可能会造成<strong>其他顶点的最短距离也减小</strong>。</p>
+<p>时间复杂度为\(O(k|E|)\) 。其中，\(k\)为每条边被处理的平均次数，而\(E\)是边集。<br><a id="more"></a></p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ul>
+<li>初始化</li>
+<li>将源点放入队列中</li>
+<li>取出队列中的一个顶点，检查它可以到达的所有顶点。假设v是u可以到达的一个顶点。若<code>d[ed.to] &gt; d[u] + ed.w</code>，那么<code>d[ed.to] = d[u] + ed.w</code>。并且，若v不在队列中，就将v放入队列。</li>
+<li>重复上一步，直到队列为空。</li>
+</ul>
+<h2 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h2><ul>
+<li>上面在将顶点放入队列之前，会检查它是否已经在队列之中。目的是为了优化算法运行速度。将顶点放入队列的目的是检查它可以到达的顶点的最短距离值是否可以更小，既然顶点已经在队列中，那么再放入一次将没有意义。</li>
+<li>为了检测负环图，可以增加一个数组，记录顶点被放入队列的次数。若发现它被放入队列的次数超过了n次，那么，<strong>必然存在负环</strong>。<strong><em>这是为什么呢？</em></strong> 考虑顶点被放入队列的原因，是因为源点到该顶点之间出现了一条更短的道路。那么考虑一个极端的情况，一条最短路的每一次延伸的导致源点到该顶点出现了一条更短的道路:<br><img src="http://linfile.xyz/data/vip_data/f_6386.svg" alt="spfa1"><br>可以看到，这张图中，最长的最短路径经过了5个顶点，且每一次拓展都会使一个顶点的最短距离值变得更小，被放入队列。而即便如此，它也顶多被放入队列5次——不，甚至更少，因为这条最短路的终点就是他本身，并不会将自己放入最短路，因而这个顶点最多被放入4次。<strong>故，当一个顶点被放入队列超过n次，这张图中是必然存负圈的。</strong><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">bool spfa(int s)</div><div class="line">&#123;</div><div class="line">    queue&lt;int&gt; q;</div><div class="line">    memset(inq, 0, sizeof inq);</div><div class="line">    memset(rcnt, 0, sizeof rcnt);</div><div class="line">    for (int i = 0; i &lt; n; i++) &#123;</div><div class="line">        d[i] = INF;</div><div class="line">        p[i] = i;</div><div class="line">    &#125;</div><div class="line">    d[s] = 0;</div><div class="line">    inq[s] = true;</div><div class="line">    q.push(s);</div><div class="line">    while (!q.empty()) &#123;</div><div class="line">        int u = q.front(); q.pop();</div><div class="line">        inq[u] = false;</div><div class="line">        for (int e = head[u]; e != -1; e = edges[e].next) &#123;</div><div class="line">            Edge ed = edges[e];</div><div class="line">            if (d[ed.to] &gt; d[u] + ed.w) &#123;</div><div class="line">                d[ed.to] = d[u] + ed.w;</div><div class="line">                p[ed.to] = u;</div><div class="line">                if (!inq[ed.to]) &#123;</div><div class="line">                    q.push(ed.to);</div><div class="line">                    inq[ed.to] = true;</div><div class="line">                    if (++rcnt[ed.to] &gt; n)</div><div class="line">                        return false;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return true;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>完整代码见 <a href="https://github.com/Linyxus/algorithms" target="_blank" rel="external">Github</a></em></p>
+<h2 id="探究"><a href="#探究" class="headerlink" title="探究"></a>探究</h2><p><em>《算法竞赛入门经典》p364</em> 刘汝佳大大留下了一个问题：</p>
+<blockquote>
+<p>另外，如果图中有其他负圈但是s无法到达这个负圈，则上面的算法也无法找到。</p>
+</blockquote>
+<p>他给了一个提示：增加一个顶点。</p>
+<p>解决方法很简单，增加一个连通源点与其他所有顶点的顶点，且边权为0，即可。</p>
+
+  	</div>
+	  
+	  <div class="article-tags tags">
+      
+        <a href="/blog/tags/C/">C++</a>
+      
+        <a href="/blog/tags/图论/">图论</a>
+      
+	  </div>
+    
+	</section>
+	
+		<section id="comments">
+			<div id="disqus_thread"></div>
+		</section>
+	
+</article>
+
+      </div>
+      <aside class='l_side'>
+        
+  <section class='m_widget about'>
+
+<img class='avatar waves-image' src='/blog/images/ad.png' />
+
+<div class='header'>Linyxus</div>
+<div class='content'>
+<div></div>
+</div>
+</section>
+
+  <section class='m_widget friendly-links'>
+<div class='header'>Links</div>
+<div class='content'>
+    <ul class="entry">
+    
+        <li><a class="flat-box" target="_blank" href="https://riteme.github.io">
+            <div class='name'>riteme</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://glacier-lab.com">
+            <div class='name'>Glacier Lab</div>
+        </a></li>
+    
+    </ul>
+</div>
+</section>
+
+  <section class='m_widget categories'>
+<div class='header'>Categories</div>
+<div class='content'>
+    
+    <ul class="entry">
+    
+        <li><a class="flat-box" href="/blog/categories/0/"><div class='name'>0</div><div class='badget'>2</div></a></li>
+    
+        <li><a class="flat-box" href="/blog/categories/Noip/"><div class='name'>Noip</div><div class='badget'>6</div></a></li>
+    
+        <li><a class="flat-box" href="/blog/categories/Python/"><div class='name'>Python</div><div class='badget'>1</div></a></li>
+    
+    </ul>
+    
+</div>
+</section>
+
+  
+<div class="m_widget tagcloud">
+    <div class="header">Tags</div>
+    <div class='content'>
+        <a href="/blog/tags/C/" style="font-size: 20px; color: #000">C++</a> <a href="/blog/tags/hello/" style="font-size: 16px; color: #555">hello</a> <a href="/blog/tags/other/" style="font-size: 14px; color: #808080">other</a> <a href="/blog/tags/python/" style="font-size: 14px; color: #808080">python</a> <a href="/blog/tags/test/" style="font-size: 14px; color: #808080">test</a> <a href="/blog/tags/urllib2/" style="font-size: 14px; color: #808080">urllib2</a> <a href="/blog/tags/图论/" style="font-size: 18px; color: #2b2b2b">图论</a>
+    </div>
+</div>
+
+
+
+      </aside>
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/linyxus" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/linyxus" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+
+  <div>Linro powered by <a href='https://hexo.io' class="codename">Hexo</a> | <a href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow</a></div>
+  <div><a href="http://www.miitbeian.gov.cn/">苏ICP备17006152号</a></div>
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</footer>
+
+  <script>setLoadingBarProgress(80);</script>
+  
+<script>
+  var disqus_shortname = 'linyxus';
+  
+  var disqus_url = 'http://linyxus.xyz/blog/blog/2017/03/04/SPFA/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<script src="/blog/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/blog/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+<script src="/blog/js/search.js"></script>
+<script src="/blog/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
