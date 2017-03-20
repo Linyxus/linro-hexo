@@ -1,6 +1,6 @@
 - name: Archives
   slug: archives
-  url: /archives
+  url: /archives/
 - name: About
   slug: about
-  url: /about
+  url: /about/
