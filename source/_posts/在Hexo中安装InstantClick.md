@@ -8,7 +8,7 @@ categories:
 - 0
 ---
 ## InstantClick
-[InstantClick](http://instantclick.io/)可以使你的网页变成一个单页的网页，对页面加载速度提升很大。~~不会写React又想感受一下SinglePage速度与逼格的小伙伴么可以眼馋一下哦0v0~~
+[InstantClick](http://instantclick.io/)可以使你的网页变成一个单页的网页，对页面加载速度提升很大。~~不会写React又想感受一下SinglePage速度与逼格的小伙伴们可以眼馋一下哦0v0~~
 
 {% blockquote InstantClick http://instantclick.io/how-it-works How InstantClick Works %}
 The most important thing to understand is this: InstantClick technically makes your website a single-page application; the browser doesn’t change pages anymore, InstantClick does.
