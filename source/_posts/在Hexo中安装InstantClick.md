@@ -8,8 +8,7 @@ categories:
 - 0
 ---
 ## InstantClick
-[InstantClick](http://instantclick.io/)可以使你的网页变成一个单页的网页，对页面加载速度提升很大。
-~~不会写React又想感受一下SinglePage速度与逼格的小伙伴么可以眼馋一下哦0v0~~
+[InstantClick](http://instantclick.io/)可以使你的网页变成一个单页的网页，对页面加载速度提升很大。~~不会写React又想感受一下SinglePage速度与逼格的小伙伴么可以眼馋一下哦0v0~~
 
 {% blockquote InstantClick http://instantclick.io/how-it-works How InstantClick Works %}
 The most important thing to understand is this: InstantClick technically makes your website a single-page application; the browser doesn’t change pages anymore, InstantClick does.
@@ -20,9 +19,7 @@ The most important thing to understand is this: InstantClick technically makes y
 首先，在`themes/your-theme/`中找到scripts.ejs。
 <!--more-->
 我是用的主题是[MaterialFlow](https://github.com/stkevintan/hexo-theme-material-flow)，
-scripts.ejs在`themes/material-flow/layouts/_partials/scripts.ejs`。当然，如果
-你的主题中没有scripts.ejs，只要找到一个所有页面（或者所有你想用IC的页面）Hexo都会
-加载的ejs。
+scripts.ejs在`themes/material-flow/layouts/_partials/scripts.ejs`。当然，如果你的主题中没有scripts.ejs，只要找到一个所有页面（或者所有你想用IC的页面）Hexo都会加载的ejs。
 
 然后在最后添加：
 {% codeblock scripts.ejs lang:ejs http://instantclick.io/download InstantClick.io %}
@@ -33,8 +30,7 @@ scripts.ejs在`themes/material-flow/layouts/_partials/scripts.ejs`。当然，�
 
 就可以了。但如果想把js保存在本地呢？
 ### 本地JS方法
-首先，下载[JS File](http://instantclick.io/v3.1.0/instantclick.min.js)到`your-theme
-/source/js`。
+首先，下载[JS File](http://instantclick.io/v3.1.0/instantclick.min.js)到`your-theme/source/js`。
 
 Hexo为加载source文件夹中的Js提供了一个函数：
 {% codeblock js() lang:ejs https://hexo.io/docs/helpers.html#js Hexo.io %}

@@ -7,11 +7,11 @@ title: Linro
 subtitle: Meet the World
 description: from Linyxus.
 keywords:
-    - Blog
-    - C++
-    - Python
-    - NOIP
-    - Web
+  - Blog
+  - C++
+  - Python
+  - NOIP
+  - Web
 author: Linyxus
 language: zh-CN
 avatar: /images/ad.png
@@ -81,6 +81,8 @@ deploy:
   user: no5002xzl
   pass: buF8zQhNQC7R
   remote: /public_html/blog/
+  ignore:
+    - MathJax
 
 search:
   path: search.xml

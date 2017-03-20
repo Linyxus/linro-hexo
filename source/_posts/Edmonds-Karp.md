@@ -70,7 +70,7 @@ $$f_{v,u}=f(v,u) - \\Delta f$$
 并且将\\(\\Delta f\\)计入总流量
 ### 代码
 #### 主体
-```
+```C++
 int maxFlow(int s, int t)
 {
     int flow = 0;
@@ -103,7 +103,7 @@ int maxFlow(int s, int t)
 ```
 *由于边和反向边在数组edges中序号紧邻（(0,1), (2,3)...)，且一个为奇数，一个为偶数。故，若边（或反向边）的序号为i，i^1就是反向边（或边）的序号。（^为异或运算符）*
 #### 添加边与反向边
-```
+```C++
 void append(int u, int v, int cap)
 {
     Edge e;

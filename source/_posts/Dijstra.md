@@ -14,7 +14,7 @@ categories:
 # 介绍
 Dijstra是图论中用以求解单源最短路径*(也就是一个顶点到图中其他顶点的最短路径)* 的算法。
 
-时间复杂度为O(n^2)。
+时间复杂度为$O(n^2)$。
 <!--more-->
 # 原理方法
  - 初始化
@@ -47,7 +47,7 @@ Dijstra是图论中用以求解单源最短路径*(也就是一个顶点到图�
 ![f_3504.jpg](http://linfile.xyz/data/vip_data/f_3504.jpg)
 
 # 实现
-```
+```C++
 void dijstra(int u)
 {
     memset(vis, 0, sizeof vis);

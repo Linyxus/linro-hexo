@@ -76,7 +76,7 @@ link与自己的lowlink之间更小的一个赋给自己的lowlink。
 时间复杂度：\\(O(nm)\\)
 
 ### 实现
-```
+```C++
 void tarjan(int u)
 {
     d[u] = low[u] = dcnt++;
