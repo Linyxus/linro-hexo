@@ -2,7 +2,7 @@
 title: 在Hexo中安装InstantClick
 date: 2017-03-19 14:06:52
 tags:
-- other
+- test
 - instantclick
 categories:
 - 0
