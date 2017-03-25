@@ -4,3 +4,6 @@
 - name: About
   slug: about
   url: /about/
+- name: Linyxus.xyz
+  slug: back
+  url: http://linyxus.xyz/
