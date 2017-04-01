@@ -44,10 +44,8 @@ window.sr = ScrollReveal({ reset: true });
 ...
 // Starting angles in degrees, will transition from these values to 0 in all axes.
 rotate: { x: 0, y: 0, z: 0 },
-
 // Starting opacity value, before transitioning to the computed opacity.
 opacity: 0,
-
 // Starting scale value, will transition from this value to 1
 scale: 0.9
 ...
