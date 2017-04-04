@@ -5,8 +5,8 @@ tags:
 - keras
 - hello
 categories:
-- Machine Learning
 - Python
+- Machine Learning
 
 ---
 

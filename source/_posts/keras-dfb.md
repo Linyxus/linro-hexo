@@ -5,8 +5,8 @@ tags:
 - keras
 - test
 categories:
-- Machine Learning
 - Python
+- Machine Learning
 
 ---
 
