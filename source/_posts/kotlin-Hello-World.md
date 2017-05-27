@@ -17,7 +17,6 @@ Kotlin是一个很讨人喜欢的语言，从名字到语法到理念。这里�
 fun hello(str: String) {
     println(str)
 }
-
 fun main(args: Array<String>) {
     var str: String
     val A: String = "Hello"
@@ -40,7 +39,7 @@ val const_name[: type_name] = const_value
 
 >   Note: []意为可以省略的。
 
-这分别对应着变量与常量。常量必须赋以初值，而变量可以不赋值。如果给定初值，那么Kotlin可以进行类型判断而允许我们省略类型的指明。
+这分别对应着变量与常量。常量和变量都可以可以不赋初值。如果给定初值，那么Kotlin可以进行类型判断而允许我们省略类型的指明。当常量不赋初值的时候，第一次对它赋值将决定它的值，并再也不能更改。
 
 Kotlin中变量的定义是Pascal式的，我想很多人可能学习的第一门语言就是Pascal，是不是感觉很亲切呢0v0Pascal的古老感配上很多现代而强大的语法，使Kotlin有种古典的美感。
 
@@ -54,7 +53,6 @@ Kotlin中变量的定义是Pascal式的，我想很多人可能学习的第一�
 fun hello(str: String) {
     println(str)
 }
-
 fun main(args: Array<String>) {
     var str: String
     val A: String = "Hello"
@@ -62,7 +60,6 @@ fun main(args: Array<String>) {
     str = A + " " + B
     hello(str)
 }
-
 fun main() {
     hello("Hello Main!")
 }
@@ -72,7 +69,7 @@ fun main() {
 
 ### 函数的定义
 
-```
+```kotlin
 fun function_name({arg_list, seperated by comma}) [: return_type] {
     //main_body
 }
