@@ -17,7 +17,9 @@ categories:
 
 ### 基础
 
-[Simple Tutorial to Kotlin(2)[数据类型与猜数游戏]](http://blog.linyxus.xyz/2017/05/28/Kotlin-2-data-type-guessing-game/)
+[Simple Tutorial to Kotlin(2)[数据类型与猜数游戏]](/Kotlin/Kotlin-2-data-type-guessing-game/)
+
+[Simple Tutorial to Kotlin(3)[if,when,for,while]](/Kotlin/kotlin-control-flow/)
 
 ### 课外阅读
 
