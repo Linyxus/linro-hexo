@@ -5,7 +5,6 @@ tags:
 - keras
 - test
 categories:
-- Python
 - Machine Learning
 
 ---

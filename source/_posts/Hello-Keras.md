@@ -7,7 +7,6 @@ tags:
 - hello
 - python
 categories:
-- Python
 - Machine Learning
 ---
 ## Hello Keras
