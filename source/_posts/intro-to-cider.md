@@ -19,7 +19,7 @@ categories:
 
 {% asset_img 1.png %}
 
-(Tips: 图中是我正在写的一个Web Game0v0 [Space Game-0.1.0-demo](https://i.linyxus.xyz/0.1.0-demo))
+(Tips: 图中是我正在写的一个Web Game0v0 [Space Game-0.1.0-demo](https://i.linyxus.xyz/space/0.1.0-demo))
 
 <!-- more -->
 
