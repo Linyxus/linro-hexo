@@ -13,13 +13,13 @@ categories:
 
 相比各位都很熟悉...但这里还是简单说一下：
 
-斐波那契数列是这样的一个数列$\{a_n\}:$
+斐波那契数列是这样的一个数列$\{a\_n\}:$
 $$
-对n \in N_+, a_{n+2} = a_n + a_{n+1}
+对n \in N\_+, a\_{n+2} = a\_n + a\_{n+1}
 $$
 且有：
 $$
-a_1=1, a_2=1
+a\_1=1, a\_2=1
 $$
 那么，根据定义，数列是这样子的：$1,1,2,3,5,8,13,21,34,55,89\cdots$
 
@@ -87,12 +87,12 @@ $$
 $$
 M
   \begin{bmatrix}
-   a\\
+   a\\\\
    b
   \end{bmatrix}
   =
     \begin{bmatrix}
-   a^{'}\\
+   a^{'}\\\\
    b^{'}
   \end{bmatrix}
 $$
@@ -101,31 +101,26 @@ $$
 M
 =
   \begin{bmatrix}
-   1 & 1\\
+   1 & 1\\\\
    1 & 0
   \end{bmatrix}
 $$
 那么，记：
 $$
-x_n =
+x\_n =
   \begin{bmatrix}
-   a_{n+1}\\
-   a_{n}
+   a\_{n+1}\\\\
+   a\_{n}
   \end{bmatrix}
   ,
-  n \in N_+
+  n \in N\_+
 $$
-要求出$a_n$，事实上只要求出
+要求出$a\_n$，事实上只要求出
 $$
-x_{n} = M^{n-1} x_1
-$$
-这里，
-$$
-x_1 = 
+x\_{n} = M^{n-1} x\_1 , x\_1 = 
   \begin{bmatrix}
-   1\\
+   1\\\\
    1
-
   \end{bmatrix}
 $$
 那么，怎样求出$M^{n-1}$呢？数学分析就此结束，开始算法实现的考虑。虽然矩阵和实数不太一样，但是快速幂算法没有理由不能应用在矩阵$M$上，实现起来也很简单。
@@ -198,43 +193,44 @@ $$
 
 我们要求出的是：
 $$
-M^{n-1}x_1,
+M^{n-1}x\_1,
 M = 
   \begin{bmatrix}
-   1 & 1\\
+   1 & 1\\\\
    1 & 0
   \end{bmatrix}
   ,
-x_1=
+x\_1=
   \begin{bmatrix}
-   1\\
+   1\\\\
    1
   \end{bmatrix}
 $$
 先求出矩阵$M$的两个特征值以及特征向量：
 $$
-\lambda_1 = \frac{1-\sqrt{5}}{2},
-\alpha_1=
+\lambda\_1 = \frac{1-\sqrt{5}}{2},
+\alpha\_1=
   \begin{bmatrix}
-   1\\
+   1\\\\
    \frac{-1-\sqrt{5}}{2}
-  \end{bmatrix} \\
-  \lambda_2 = \frac{1+\sqrt{5}}{2},
-  \alpha_2=
+  \end{bmatrix} \\\\
+  \lambda\_2 = \frac{1+\sqrt{5}}{2},
+  \alpha\_2=
   \begin{bmatrix}
-   1\\
+   1\\\\
    \frac{-1+\sqrt{5}}{2}
   \end{bmatrix}
 $$
-设$x_1 = p\alpha_1 + q\alpha_2$，可以求得：
+设$x\_1 = p\alpha\_1 + q\alpha\_2$，可以求得：
 $$
-M^{n-1}x_1 = M^{n-1}(p\alpha_1 + q\alpha_2) = p\lambda_1^{n-1}\alpha_1 + q\lambda_2^{n-1}\alpha_2
+M^{n-1}x\_1 = M^{n-1}(p\alpha\_1 + q\alpha\_2)   \\\\
+= p\lambda\_1^{n-1}\alpha\_1 + q\lambda\_2^{n-1}\alpha\_2
 $$
 最终就可以求出人尽皆知的斐波那契数列通项公式：
 $$
-a_n = \frac{\phi^n-(1-\phi)^n}{\sqrt{5}},\phi=\frac{1+\sqrt{5}}{2}
+a\_n = \frac{\phi^n-(1-\phi)^n}{\sqrt{5}},\phi=\frac{1+\sqrt{5}}{2}
 $$
-下面可以用实数快速幂来计算$a_n$的值，使用快速幂算法，也是$O(logn)$的时间复杂度。不做代码实现，由于精度问题，需要取整到邻近整数。
+下面可以用实数快速幂来计算$a\_n$的值，使用快速幂算法，也是$O(logn)$的时间复杂度。不做代码实现，由于精度问题，需要取整到邻近整数。
 
 
 
